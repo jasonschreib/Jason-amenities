@@ -1,8 +1,11 @@
+//import allAmenities array
+const amenities = require('./allAmenities.js');
+
 //connection to the Mongoose database
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/airbnb', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost/airbnbAmenities', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 
@@ -31,11 +34,10 @@ async function seedData() {
         //create a new entry for property id - all props will have the same amenities array (at least for now)
         const doc = new propertyAmenities({
           propertyID: i,
-          amenities:
+          amenities: amenities.allAmenities
         });
         //save this entry - it is async!
         await doc.save();
-
     }
     //console.log message once all done with seeding
     console.log('finished seeding.');
@@ -45,13 +47,13 @@ async function seedData() {
 };
 
 //function to retrieve amenities for a certain property
-const retrievePhotoObjs = function (id) {
-  retrieve document with the property id that is passed in
+const retrieveAmenities = function (id) {
+  //retrieve document with the property id that is passed in
   return new Promise((resolve, reject) => {
-    Photo.find({ propertyID: id }, function (err, docs) {
+    propertyAmenities.find({ propertyID: id }, function (err, docs) {
       //err check
       if (err) {
-        console.log('Error with retrieving photos');
+        console.log('Error with retrieving amenities');
         reject(err);
       } else {
         resolve(docs);
@@ -63,5 +65,6 @@ const retrievePhotoObjs = function (id) {
 
 
 module.exports = {
-
-}
+  seedData,
+  retrieveAmenities
+};
