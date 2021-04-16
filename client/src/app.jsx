@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 
 import axios from 'axios';
 
+//import AmenitiesSection
+import AmenitiesSection from './components/AmenitiesSection.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     //set a starting state so things will render
-
+    //this.state =
   }
 
   // //as soon as the component mounts, call the getAmenities function
@@ -44,6 +46,7 @@ class App extends React.Component {
     return (
       <div className='main'>
         Ayo
+        <AmenitiesSection />
       </div>
     );
   }
