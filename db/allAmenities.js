@@ -42,4 +42,6 @@ const allAmenities = [
   'Long term stays allowed'
 ];
 
-export default allAmenities;
+module.exports = {
+  allAmenities
+};

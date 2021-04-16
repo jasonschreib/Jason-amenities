@@ -1,11 +1,11 @@
 //import allAmenities array
-import allAmenities from './allAmenities.js';
+const amenities = require('./allAmenities.js');
 
 //connection to the Mongoose database
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/airbnb', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost/airbnbAmenities', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 
@@ -34,11 +34,10 @@ async function seedData() {
         //create a new entry for property id - all props will have the same amenities array (at least for now)
         const doc = new propertyAmenities({
           propertyID: i,
-          amenities: allAmenities
+          amenities: amenities.allAmenities
         });
         //save this entry - it is async!
         await doc.save();
-
     }
     //console.log message once all done with seeding
     console.log('finished seeding.');

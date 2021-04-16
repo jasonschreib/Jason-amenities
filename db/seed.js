@@ -1,5 +1,5 @@
 //import seeData function
-import seedData from './index.js';
+const seed = require('./index.js');
 //module to contain the seeding script for amenities service
 
-seedData();
+seed.seedData();
