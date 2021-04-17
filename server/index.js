@@ -6,7 +6,7 @@ const app = express();
 const port = 3005;
 
 //serve up initial html page
-app.use(express.static(__dirname + '/../client/dist/index.html'));
+app.use(express.static(__dirname + '/../client/dist'));
 
 //serve route to retrieve amenities data for a specific property id
 app.get('/amenities/:propertyID', (req, res) => {
