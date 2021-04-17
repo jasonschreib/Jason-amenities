@@ -10,14 +10,23 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     //set a starting state so things will render
-    //this.state =
+    this.state = {
+      amenities: [
+        "Elevator",
+        "Free parking on premises",
+        "Cable TV",
+        "Air conditioning",
+        "TV with standard cable",
+        "Kitchen"
+      ]
+    };
   }
 
   // //as soon as the component mounts, call the getAmenities function
-  // componentDidMount() {
-  //   console.log('Mounted');
-  //   // this.getAmenities();
-  // }
+  componentDidMount() {
+    console.log('Mounted');
+    this.getAmenities();
+  }
 
 
   //function that will send a GET request for the propID data and populate the state
@@ -30,10 +39,10 @@ class App extends React.Component {
     //send GET to /photos/${propID}
     axios.get(`/amenities/${propID}`)
       .then((result) => {
-        console.log('FETCH RESULT', result.data);
-        // this.setState({
-        //   amenities: result.data
-        // });
+        console.log('FETCH RESULT', result.data[0].amenities);
+        this.setState({
+          amenities: result.data[0].amenities
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -45,8 +54,8 @@ class App extends React.Component {
   render() {
     return (
       <div className='main'>
-        Ayo
-        <AmenitiesSection />
+        Scambnb
+        <AmenitiesSection amenities={this.state.amenities}/>
       </div>
     );
   }
