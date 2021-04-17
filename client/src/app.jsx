@@ -43,7 +43,6 @@ class App extends React.Component {
         this.setState({
           amenities: result.data[0].amenities
         });
-        console.log('state', this.state.amenities);
       })
       .catch((err) => {
         console.log(err);
@@ -55,7 +54,7 @@ class App extends React.Component {
   render() {
     return (
       <div className='main'>
-        Ayo
+        Scambnb
         <AmenitiesSection amenities={this.state.amenities}/>
       </div>
     );
